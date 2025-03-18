@@ -52,7 +52,7 @@ def obter_turma_por_id(id):
 
 #Meu codigo (POST)FILIPE---------------------------------------------------------------------------------------------
 
-
+##confirmação
 @app.route("/alunos", methods=["POST"])
 def criarAluno():
     dados = request.json
@@ -171,7 +171,7 @@ def deleteTurma(idTurma):
     return '', 204
 
 
-# RESETAR DADOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+# RESETAR DADOS
 
 @app.route("/reseta", methods=["POST", "DELETE"])
 def reseta():
