@@ -68,7 +68,7 @@ def criarAluno():
         "nome": dados["nome"]
     }
     escola["alunos"].append(novo_aluno)
-    return jsonify(novo_aluno), 201
+    return jsonify(novo_aluno), 200
 
 @app.route("/professores", methods=["POST"])
 def criarProfessor():
@@ -85,7 +85,7 @@ def criarProfessor():
         "nome": dados["nome"]
     }
     escola["professores"].append(novo_professor)
-    return jsonify(novo_professor), 201
+    return jsonify(novo_professor), 200
 
 @app.route("/turmas", methods=["POST"])
 def criarTurma():
@@ -99,7 +99,7 @@ def criarTurma():
         "alunos": dados["alunos"]
     }
     escola["turmas"].append(nova_turma)
-    return jsonify(nova_turma), 201
+    return jsonify(nova_turma), 200
 
 
 #PUT do SEM MUNDIAL2(MATHEUS)--------------------------------------------------------------------------------------------
