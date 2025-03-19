@@ -5,7 +5,7 @@ class TestStringMethods(unittest.TestCase):
 
    
     # TESTES JOICY-------------------------------------------------------------------------------------
-    def test_004(self):
+    def test_004_buscaAlunoId(self):
 
          # busca aluno por ID
         r = requests.get('http://localhost:5000/alunos/1')
@@ -15,7 +15,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(aluno['nome'], 'Filipe')
         print("4 OK")
 
-    def test_005(self):
+    def test_005__AlunoInexistente(self):
         # tenta acessar aluno que não existe
 
         r = requests.get('http://localhost:5000/alunos/100')
@@ -23,7 +23,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(r.json()['erro'], 'aluno nao encontrado')  
         print("5 OK")
 
-    def test_006(self):
+    def test_006_verificação(self):
          # verifica se dados retornados são certos
 
         r = requests.post('http://localhost:5000/alunos', json={"id": 2, "nome": "Matheus"})
@@ -41,7 +41,7 @@ class TestStringMethods(unittest.TestCase):
 
   
     # TESTE EXTRA------------------------------------------------------------------------------------
-    def test_016(self):
+    def test_016_semAluno(self):
         #criar aluno sem nome (erro)
 
 
