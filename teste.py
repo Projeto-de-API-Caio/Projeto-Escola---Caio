@@ -4,7 +4,7 @@ import unittest
 class TestStringMethods(unittest.TestCase):
 
     
-
+ 
     # TESTE VICTORIA-----------------------------------------------------------------------------------
     def test_010(self):
         # verifica se um aluno pode ser deletado
