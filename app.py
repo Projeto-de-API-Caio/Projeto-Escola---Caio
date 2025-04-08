@@ -2,27 +2,23 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-escola = {
-    "alunos": [],
-    "professores": [],
-    "turmas": []
-}
-
-
 #GET do Capolupo---------------------------------------------------------------------------------------------------------
 
 
 @app.route("/alunos", methods=["GET"])
-def getAlunos():
-    return jsonify(escola["alunos"])
+def exibir_alunos():
+    print("LISTA DE TODOS ALUNOS:")
+    return model.getAlunos()
 
 @app.route("/professores", methods=["GET"])
-def getProfessores():
-    return jsonify(escola["professores"])
+def exibir_professores():
+    print("LISTA DE TODOS PROFESSORES:")
+    return model.getProfessores()
 
 @app.route("/turmas", methods=["GET"])
-def getTurmas():
-    return jsonify(escola["turmas"])
+def exibir_turmas():
+    print("LISTA DE TODAS TURMAS:")
+    return model.getTurmas()
 
 
 #GET ID da Joicy S2-----------------------------------------------------------------------------------------------------
@@ -54,21 +50,9 @@ def obter_turma_por_id(id):
 
 ##confirmação
 @app.route("/alunos", methods=["POST"])
-def criarAluno():
-    dados = request.json
-    if "id" not in dados or "nome" not in dados:
-        return jsonify({"erro": "aluno sem nome"}), 400
-    
-    for aluno in escola["alunos"]:
-        if aluno["id"] == dados["id"]:
-            return jsonify({"erro": "id ja utilizada"}), 400
-    
-    novo_aluno = {
-        "id": dados["id"],
-        "nome": dados["nome"]
-    }
-    escola["alunos"].append(novo_aluno)
-    return jsonify(novo_aluno), 200
+def criar_aluno():
+    print("CRIANDO ALUNO!")
+    return model.criarAluno
 
 @app.route("/professores", methods=["POST"])
 def criarProfessor():
