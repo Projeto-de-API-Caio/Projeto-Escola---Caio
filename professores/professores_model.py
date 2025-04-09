@@ -15,8 +15,7 @@ def obter_professor_por_id(id):
             return (professor)
     return ({"erro": "professor nao encontrado"}), 404
 
-def criarProfessor():
-    dados = request.json
+def criarProfessor(dados):
     if "id" not in dados or "nome" not in dados:
         return ({"erro": "professor sem nome"}), 404
     
@@ -31,10 +30,9 @@ def criarProfessor():
     escola["professores"].append(novo_professor)
     return (novo_professor), 200
 
-def updateProfessor(idProfessor):
+def updateProfessor(idProfessor, dados):
     for professor in escola["professores"]:
         if professor["id"] == idProfessor:
-            dados = request.json
             if "nome" not in dados or dados["nome"] == '':
                 return ({"erro": "professor sem nome"}), 404
             professor["nome"] = dados["nome"]
