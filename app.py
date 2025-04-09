@@ -1,14 +1,10 @@
 from flask import Flask, jsonify, request
 
-app = Flask(__name__)
+
 
 #GET do Capolupo---------------------------------------------------------------------------------------------------------
 
 
-@app.route("/alunos", methods=["GET"])
-def exibir_alunos():
-    print("LISTA DE TODOS ALUNOS:")
-    return model.getAlunos()
 
 @app.route("/professores", methods=["GET"])
 def exibir_professores():
@@ -24,12 +20,7 @@ def exibir_turmas():
 #GET ID da Joicy S2-----------------------------------------------------------------------------------------------------
 
 
-@app.route("/alunos/<int:id>", methods=["GET"])
-def obter_aluno_por_id(id):
-    for aluno in escola["alunos"]:
-        if aluno.get("id") == id:
-            return jsonify(aluno)
-    return jsonify({"erro": "aluno nao encontrado"}), 400
+
 
 @app.route("/professores/<int:id>", methods=["GET"])
 def obter_professor_por_id(id):
@@ -49,10 +40,8 @@ def obter_turma_por_id(id):
 #Meu codigo (POST)FILIPE---------------------------------------------------------------------------------------------
 
 ##confirmação
-@app.route("/alunos", methods=["POST"])
-def criar_aluno():
-    print("CRIANDO ALUNO!")
-    return model.criarAluno
+
+
 
 @app.route("/professores", methods=["POST"])
 def criarProfessor():
@@ -89,16 +78,8 @@ def criarTurma():
 #PUT do SEM MUNDIAL2(MATHEUS)--------------------------------------------------------------------------------------------
 
 
-@app.route("/alunos/<int:idAluno>", methods=["PUT"])
-def updateAluno(idAluno):
-    for aluno in escola["alunos"]:
-        if aluno["id"] == idAluno:
-            dados = request.json
-            if "nome" not in dados or dados["nome"] == '':
-                return jsonify({"erro": "aluno sem nome"}), 400
-            aluno["nome"] = dados["nome"]
-            return jsonify(aluno), 200
-    return jsonify({"erro": "aluno nao encontrado"}), 400
+
+
 
 @app.route("/professores/<int:idProfessor>", methods=["PUT"])
 def updateProfessor(idProfessor):
@@ -127,14 +108,8 @@ def updateTurma(idTurma):
 #DELETAR DA VICTORIA------------------------------------------------------------------------------------------------------
 
 
-@app.route("/alunos/<int:idAluno>", methods=["DELETE"])
-def deleteAluno(idAluno):
-    aluno_existe = any(aluno['id'] == idAluno for aluno in escola["alunos"])
-    if not aluno_existe:
-        return jsonify({"erro": "aluno nao encontrado"}), 400
 
-    escola["alunos"] = [aluno for aluno in escola["alunos"] if aluno["id"] != idAluno]
-    return '', 204
+
 
 @app.route("/professores/<int:idProfessor>", methods=["DELETE"])
 def deleteProfessor(idProfessor):
