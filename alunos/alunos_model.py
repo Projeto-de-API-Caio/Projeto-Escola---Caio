@@ -15,7 +15,7 @@ def getAlunos():
 def obter_aluno_por_id(id):
     for aluno in escola["alunos"]:
         if aluno.get("id") == id:
-            return (aluno)
+            return aluno, 200
     return ({"erro": "aluno nao encontrado"}), 400
 
 def criarAluno():
@@ -51,3 +51,5 @@ def deleteAluno(idAluno):
 
     escola["alunos"] = [aluno for aluno in escola["alunos"] if aluno["id"] != idAluno]
     return '', 204
+
+

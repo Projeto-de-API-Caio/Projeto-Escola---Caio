@@ -24,3 +24,5 @@ def atualizar_turma(idTurma):
 def deletar_turma(idTurma):
     return jsonify(model.deleteTurma(idTurma))
 
+if __name__ == "__main__":
+    app.run(debug=True)

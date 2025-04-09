@@ -13,12 +13,12 @@ def obter_turma_por_id(id):
     for turma in escola["turmas"]:
         if turma["id"] == id:
             return (turma)
-    return ({"erro": "turma nao encontrada"}), 400
+    return ({"erro": "turma nao encontrada"}), 404
 
 def criarTurma():
     dados = request.json
     if "id" not in dados or "nome" not in dados or "alunos" not in dados:
-        return ({"erro": "informacoes incompletas para criar turma"}), 400
+        return ({"erro": "informacoes incompletas para criar turma"}), 404
     
     nova_turma = {
         "id": dados["id"],
@@ -37,12 +37,12 @@ def updateTurma(idTurma):
             if "alunos" in dados:
                 turma["alunos"] = dados["alunos"]
             return (turma), 200
-    return ({"erro": "turma nao encontrada"}), 400
+    return ({"erro": "turma nao encontrada"}), 404
 
 def deleteTurma(idTurma):
     turma_existe = any(turma["id"] == idTurma for turma in escola["turmas"])
     if not turma_existe:
-        return ({"erro": "turma nao encontrada"}), 400
+        return ({"erro": "turma nao encontrada"}), 404
 
     escola["turmas"] = [turma for turma in escola["turmas"] if turma["id"] != idTurma]
     return '', 204

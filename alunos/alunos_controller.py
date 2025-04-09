@@ -11,18 +11,24 @@ def exibir_alunos():
 
 @app.route("/alunos/<int:id>", methods=["GET"])
 def exibir_alunos_por_id(id):
-    return jsonify(model.obter_aluno_por_id(id)) 
+    aluno, status = model.obter_aluno_por_id(id)
+    return jsonify(aluno), status
     
 @app.route("/alunos", methods=["POST"])
 def criar_aluno():
     print("CRIANDO ALUNO!")
-    return jsonify(model.criarAluno())
+    aluno, status = model.criarAluno()
+    return jsonify(aluno), status
 
 @app.route("/alunos/<int:idAluno>", methods=["PUT"])
 def atualizar_aluno(idAluno):
-    return jsonify(model.updateAluno(idAluno))
+    aluno, status = model.updateAluno(idAluno)
+    return jsonify(aluno), status
 
 @app.route("/alunos/<int:idAluno>", methods=["DELETE"])
-def deletar_aluno(idALuno):
-    return jsonify(model.deleteAluno(idALuno))
+def deletar_aluno(idAluno):
+    resposta, status = model.deleteAluno(idAluno)
+    return (jsonify(resposta), status) if resposta else ('', status)
 
+if __name__ == "__main__":
+    app.run(debug=True)
