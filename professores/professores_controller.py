@@ -24,3 +24,6 @@ def atualizar_aluno(idProfessor):
 @app.route("/professores/<int:idProfessor>", methods=["DELETE"])
 def deletar_aluno(idProfessor):
     return jsonify(model.deleteProfessor(idProfessor))
+
+if __name__ == "__main__":
+    app.run(debug=True)
