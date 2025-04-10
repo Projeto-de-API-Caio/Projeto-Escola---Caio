@@ -17,12 +17,14 @@ def exibir_alunos_por_id(id):
 @app.route("/alunos", methods=["POST"])
 def criar_aluno():
     print("CRIANDO ALUNO!")
-    aluno, status = model.criarAluno()
+    dados = request.json
+    aluno, status = model.criarAluno(dados)
     return jsonify(aluno), status
 
 @app.route("/alunos/<int:idAluno>", methods=["PUT"])
 def atualizar_aluno(idAluno):
-    aluno, status = model.updateAluno(idAluno)
+    dados = request.json
+    aluno, status = model.updateAluno(idAluno, dados)
     return jsonify(aluno), status
 
 @app.route("/alunos/<int:idAluno>", methods=["DELETE"])

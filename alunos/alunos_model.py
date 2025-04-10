@@ -1,4 +1,4 @@
-from flask import request
+
 
 escola = {
     "alunos": [],
@@ -18,8 +18,7 @@ def obter_aluno_por_id(id):
             return aluno, 200
     return ({"erro": "aluno nao encontrado"}), 400
 
-def criarAluno():
-    dados = request.json
+def criarAluno(dados):
     if "id" not in dados or "nome" not in dados:
         return ({"erro": "aluno sem nome"}), 400
     
@@ -34,10 +33,9 @@ def criarAluno():
     escola["alunos"].append(novo_aluno)
     return (novo_aluno), 200
 
-def updateAluno(idAluno):
+def updateAluno(idAluno, dados):
     for aluno in escola["alunos"]:
         if aluno["id"] == idAluno:
-            dados = request.json
             if "nome" not in dados or dados["nome"] == '':
                 return ({"erro": "aluno sem nome"}), 400
             aluno["nome"] = dados["nome"]
