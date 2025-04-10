@@ -45,7 +45,7 @@ class TestStringMethods(unittest.TestCase):
 
         r = requests.get('http://localhost:5000/professores/100')
         self.assertEqual(r.status_code, 400)  
-        self.assertEqual(r.json()['erro'], 'professor nao encontrado')  
+        self.assertEqual(r.json()["error"], 'Professor não encontrado')  
         print("5 OK")
 
     def test_006_verificação(self):
@@ -56,7 +56,7 @@ class TestStringMethods(unittest.TestCase):
         r_get = requests.get('http://localhost:5000/professores/2')
         self.assertEqual(r_get.status_code, 200)
         professor = r_get.json()
-        self.assertEqual(professor['nome'], 'Matheus')
+        self.assertEqual(professor["nome"], "Matheus")
         print("6 OK")
 
     
@@ -77,7 +77,7 @@ class TestStringMethods(unittest.TestCase):
         professor_data = {"id": 3, "nome": "Joicy"}
         r = requests.post('http://localhost:5000/professores', json=professor_data)
         self.assertEqual(r.status_code, 400)
-        self.assertEqual(r.json()['erro'], 'id ja utilizada')
+        self.assertEqual(r.json()["error"], "id ja utilizada")
         print("8 OK")
 
     def test_009(self):
@@ -86,7 +86,7 @@ class TestStringMethods(unittest.TestCase):
         professor_data = {"id": 4}
         r = requests.post('http://localhost:5000/professores', json=professor_data)
         self.assertEqual(r.status_code, 400)
-        self.assertEqual(r.json()['erro'], 'professor sem nome')
+        self.assertEqual(r.json()["error"], "professor sem nome")
         print("9 OK")
   
     # TESTE VICTORIA-----------------------------------------------------------------------------------
@@ -94,10 +94,10 @@ class TestStringMethods(unittest.TestCase):
         # verifica se um professor pode ser deletado
 
         r = requests.delete('http://localhost:5000/professores/3')
-        self.assertEqual(r.status_code, 204) 
+        self.assertEqual(r.status_code, 200) 
         r = requests.get('http://localhost:5000/professores/3')
         self.assertEqual(r.status_code, 400)
-        self.assertEqual(r.json()['erro'], 'professor nao encontrado')
+        self.assertEqual(r.json()["error"], "Professor não encontrado")
         print("10 OK")
 
     def test_011(self):
@@ -105,7 +105,7 @@ class TestStringMethods(unittest.TestCase):
 
         r = requests.delete('http://localhost:5000/professores/100')
         self.assertEqual(r.status_code, 400)  
-        self.assertEqual(r.json()['erro'], 'professor nao encontrado')
+        self.assertEqual(r.json()["error"], "Professor não encontrado")
         print("11 OK")
 
     def test_012(self):
@@ -115,7 +115,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
         r_delete = requests.delete('http://localhost:5000/professores/5')
-        self.assertEqual(r_delete.status_code, 204)
+        self.assertEqual(r_delete.status_code, 200)
 
         r_lista = requests.get('http://localhost:5000/professores')
         professores = r_lista.json()
@@ -128,21 +128,21 @@ class TestStringMethods(unittest.TestCase):
 
         r = requests.put('http://localhost:5000/professores/3', json={"nome": "Fabiano Silva"})
         self.assertEqual(r.status_code, 400)  
-        self.assertEqual(r.json()['erro'], 'professor nao encontrado') 
+        self.assertEqual(r.json()["error"], "Professor não encontrado") 
         print("13 OK")
 
     def test_014(self):
        # tentar editar um professor sem nome (erro)
         r = requests.put('http://localhost:5000/professores/3', json={"id": 3})
         self.assertEqual(r.status_code, 400)  
-        self.assertEqual(r.json()['erro'], 'professor nao encontrado')  
+        self.assertEqual(r.json()["error"], "Professor não encontrado")  
         print("14 OK")
 
     def test_015(self):
         # tenta editar um professor que nao existe
         r = requests.put('http://localhost:5000/professores/100', json={"nome": "Novo Nome"})
         self.assertEqual(r.status_code, 400)  
-        self.assertEqual(r.json()['erro'], 'professor nao encontrado')  
+        self.assertEqual(r.json()["error"], "Professor não encontrado")  
         print("15 OK")
         
      # TESTE EXTRA------------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ class TestStringMethods(unittest.TestCase):
         professor_data = {"id": 6}
         r = requests.post('http://localhost:5000/professores', json=professor_data)
         self.assertEqual(r.status_code, 400)
-        self.assertEqual(r.json()['erro'], 'professor sem nome')
+        self.assertEqual(r.json()["error"], "professor sem nome")
         print("16 OK")
 
 
