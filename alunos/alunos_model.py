@@ -1,10 +1,45 @@
-
+from config import db
 
 escola = {
     "alunos": [],
     "professores": [],
     "turmas": []
     }
+
+
+
+class Aluno(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    idade = db.Column(db.Integer)
+    turma_id = db.Column(db.Integer, db.ForeignKey('turma.id'))
+    data_nascimento = db.Column(db.Date)
+    nota_primeiro_semestre = db.Column(db.Float, nullable=False)
+    nota_segundo_semestre = db.Column(db.Float,nullable=False)
+    media_final = db.Column(db.Numeric(5, 2),nullable=False)
+
+    def __init__(self, nome, idade, turma_id, data_nascimento, nota_primeiro_semestre, nota_segundo_semestre, media_final):
+        self.nome = nome
+        self.idade = idade
+        self.turma_id = turma_id
+        self.data_nascimento = data_nascimento
+        self.nota_primeiro_semestre = nota_primeiro_semestre
+        self.nota_segundo_semestre = nota_segundo_semestre
+        self.media_final = media_final
+
+
+    def to_dict(self):
+        return {
+        'id': self.id,
+        'nome': self.nome,
+        'idade': self.idade,
+        'turma_id': self.turma_id,
+        'data_nascimento': self.data_nascimento.isoformat(),
+        'nota_primeiro_semestre': float(self.nota_primeiro_semestre),
+        'nota_segundo_semestre': float(self.nota_segundo_semestre),
+        'media_final': float(self.media_final)
+                }
+
 
 class AlunoNaoIdentificado(Exception):
     pass
